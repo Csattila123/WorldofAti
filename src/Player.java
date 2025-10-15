@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+
+public class Player {
+    public Scene scene;
+    private ArrayList<Item> inventory;
+
+    public Scene getScene() {
+        return this.scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public Player(Scene startingScene) {
+        this.scene = startingScene;
+        this.inventory = new ArrayList<>();
+    }
+
+    public void takeItem(Item item){
+        inventory.add(item);
+    }
+
+    public String getInventoryString(){
+        if (inventory.isEmpty()){
+            return "A leltár üres";
+        }
+        StringBuilder returnString = new StringBuilder();
+        return returnString.toString();
+    }
+}
