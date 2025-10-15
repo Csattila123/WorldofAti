@@ -25,7 +25,13 @@ public class Player {
         if (inventory.isEmpty()){
             return "A leltár üres";
         }
+        // A StringBuilder objektumot olyan szituációban használják,
+        // mint például egy loop ahol sok Stringet fűzünk össze (concate-nalunk)
+        // Ez azért kell, mert a Java-ban a String immutable, és egyébként mindig úat hozna létre ami költséges művelet
         StringBuilder returnString = new StringBuilder();
+        for (Item item: inventory){
+            returnString.append(" ").append(item.getName());
+        }
         return returnString.toString();
     }
 }
