@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Game {
+    Player player;
 
     public Game(){
         Scene enterance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó található");
@@ -11,6 +12,8 @@ public class Game {
         hall.setExit(Direction.DEL, enterance);
         hall.setExit(Direction.NYUGAT, armory);
         armory.setExit(Direction.KELET, hall);
+
+        player = new Player(enterance);
     }
 
     public static void main(String[] args) {
@@ -22,6 +25,7 @@ public class Game {
     private void play() {
         Scanner scanner = new Scanner(System.in);
         display("Üdv a várkalandban");
+        display(player.getScene().getDescription());
 
         while (true){
 
