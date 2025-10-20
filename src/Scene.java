@@ -11,21 +11,21 @@ public class Scene {
         this.items = new ArrayList<>();
         this.exits = new HashMap<>();
     }
+    public void setExit(Direction direction, Scene neigbhor){
+        // itt adunk hozzá kijáratot a helyszínhez, irány és zomszédhelyszin formájában.
+        // A HashMap put metódusa az hasonló az arrayList add()
+        // csak ez key (direction) és value(szomszéd) párokat vár mindig
+        exits.put(direction, neigbhor);
 
-    public void setExit(Direction direction, Scene neighbor){
-        // itt adunk hozzá kijáratott a helyszínhez, irány és szomszédhelyszín formájában
-        // a HashMap put() metódus az hasonló az arraylist add() metódusához, új elemet adunk hozzá
-        // csak ez a key (direction) és value (neighbor) párokat vár mindig. A Direction egy ENUM
-        exits.put(direction, neighbor);
     }
-
-    public void addItem(Item item){
+    public void setItems(Item item){
         items.add(item);
     }
-
-    // az adott irányban milyen szomszédos helyszín van
     public Scene getExit(Direction direction){
         return exits.get(direction);
     }
 
+    public String getDescription() {
+        return this.description;
+    }
 }
