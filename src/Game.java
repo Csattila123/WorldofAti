@@ -25,20 +25,45 @@ public class Game {
     private void play() {
         Scanner scanner = new Scanner(System.in);
         display("Üdv a várkalandban");
-        display(player.getScene().getDescription());
 
         while (true){
+            display("----------------------------");
+            display(player.getCurrentScene().getDescription());
+            display(">");
 
-            String input = scanner.nextLine().trim();
-            String command = input;
+            // a scanner nextLine() egy teljes sort olvas be
+            String input = scanner.nextLine().toLowerCase().trim();
+            String[] words = input.split(" ");
+
+            String command = words[0];
+
+            // ha van második szó majd kinyerjük egy ternary operatorral -> ternary operator az ugyanaz mint egy if-then, csak tömör
+            String subject = words.length > 1 ? words[1] : "";
 
             switch (command){
+                case "menj":
+                    Direction direction = Direction.fromString(subject);
+                    moveplayer(direction);
+                    break; // ha nincs break tovább menne a következő ágra
+
                 case "kilep":
                     display("Köszi a játékot!");
                     scanner.close();
                     return;
+
+                default:
+                    display("Nem értem a parancsot!");
+                    break;
             }
         }
+    }
+
+    private void moveplayer(Direction direction){
+        Scene nextScene = player.getCurrentScene().getExit(direction);
+        if (nextScene == null){
+            display("Nem mehetsz arra");
+        }
+        player.setCurrentScene(nextScene);
     }
 
     private void display(String message) {
