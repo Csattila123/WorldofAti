@@ -34,8 +34,7 @@ public class Game {
             display.display(">");
 
             // a scanner nextLine() egy teljes sort olvas be
-            String input = scanner.nextLine().toLowerCase().trim();
-            String[] words = input.split(" ");
+            String[] words = getCommand(scanner);
 
             String command = words[0];
 
@@ -58,6 +57,12 @@ public class Game {
                     break;
             }
         }
+    }
+
+    private static String[] getCommand(Scanner scanner) {
+        String input = scanner.nextLine().toLowerCase().trim();
+        String[] words = input.split(" ");
+        return words;
     }
 
     private void movePlayer(Direction direction){
